@@ -7,7 +7,7 @@ import * as api from '../config';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENTION_COMPOSE_ || compose;
 
-const store = createStore(rootReducer, composeEnhancers(
+export const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(
     thunk.withExtraArgument({
       client: axios,
