@@ -1,10 +1,6 @@
 import styled from 'styled-components';
-
 import { IoSearch } from 'react-icons/io5';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectSearch } from '../store/controls/controls-selectors';
-import { setSearch } from '../store/controls/controls-actions';
+import { useSearch } from './use-search';
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
@@ -35,20 +31,7 @@ const Input = styled.input.attrs({
 `;
 
 export const Search = () => {
-  const dispatch = useDispatch();
-  const search = useSelector(selectSearch);
-  const [searchInput, setSearchInput] = useState(search);
-
-  useEffect(() => {
-    const timout = setTimeout(() => {
-      dispatch(setSearch(searchInput));
-    }, 600);
-    return () => clearTimeout(timout);
-  }, [searchInput]);
-
-  const handleSearch = (e) => {
-    setSearchInput(e.target.value);
-  }
+  const [searchInput, handleSearch] = useSearch();
 
   return (
     <InputContainer>
